@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: task-sie-services
+  profiles:
+    include:
+      - dev
+  datasource:
+    url: jdbc:postgresql://sie-database.postgres.database.azure.com:5432/sie-gestor-tareas-desarrollo
+    username: siedatabaseuser
+    password: uoZJyTCwXPvp.c_
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+        order_by:
+          default_null_ordering: last
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto: validate
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/dbchangelog.xml
+server:
+  port: ${PORT:8080}
+jwt:
+  secret: PrQ@LKZ%z$b@deuHMkmEU
+  expiration: 600000000
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+
