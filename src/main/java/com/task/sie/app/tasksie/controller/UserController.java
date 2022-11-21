@@ -1,17 +1,26 @@
 package com.task.sie.app.tasksie.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.task.sie.app.tasksie.dto.user.UserDto;
+import com.task.sie.app.tasksie.model.User;
+import com.task.sie.app.tasksie.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("v1/security/user")
+@RequestMapping("/v1/security/user")
 public class UserController {
+    @Autowired
+    private UserService userService;
 
     @GetMapping()
-    public List<String> index(){
-        return List.of("Hola", "Test");
+    public List<User> index(){
+        return userService.index();
+    }
+
+    @PostMapping("/create")
+    public User create(@RequestBody UserDto userDto){
+        return userService.create(userDto);
     }
 }

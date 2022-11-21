@@ -11,7 +11,7 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
     <changeSet author="Diego Acosta" id="script-01">
         <createTable tableName="sec_users">
-            <column name="id" type="NUMERIC">
+            <column name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="users_pkey"/>
             </column>
             <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
@@ -30,7 +30,7 @@
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="password" type="VARCHAR(100)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="avatar" type="TEXT">
                 <constraints nullable="true"/>
@@ -41,8 +41,17 @@
             </column>
         </createTable>
         <createTable tableName="sec_roles">
-            <column name="id" type="NUMERIC">
+            <column name="id" type="SERIAL">
                 <constraints primaryKey="true" primaryKeyName="roles_pkey"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
+                <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
@@ -52,10 +61,10 @@
             </column>
         </createTable>
         <createTable tableName="sec_user_rol">
-            <column name="user_id" type="NUMERIC">
+            <column name="user_id" type="SERIAL">
                 <constraints nullable="false"/>
             </column>
-            <column name="rol_id" type="NUMERIC">
+            <column name="rol_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -67,7 +76,16 @@
                                  constraintName="fk_rol_id_users"
                                  referencedTableName="sec_roles" referencedColumnNames="id"/>
         <createTable tableName="sec_permissions">
-            <column name="id" type="NUMERIC">
+            <column name="id" type="serial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(50)">
@@ -79,10 +97,10 @@
         </createTable>
         <addPrimaryKey tableName="sec_permissions" columnNames="id"/>
         <createTable tableName="sec_rol_permissions">
-            <column name="rol_id" type="NUMERIC">
+            <column name="rol_id" type="SERIAL">
                 <constraints nullable="false"/>
             </column>
-            <column name="permission_id" type="NUMERIC">
+            <column name="permission_id" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
