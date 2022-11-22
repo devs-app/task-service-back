@@ -5,9 +5,9 @@ spring:
     include:
       - dev
   datasource:
-    url: jdbc:postgresql://sie-database.postgres.database.azure.com:5432/sie-gestor-tareas-desarrollo
-    username: siedatabaseuser
-    password: uoZJyTCwXPvp.c_
+    url: jdbc:postgresql://localhost:5432/sie-gestor-tareas-desarrollo
+    username: postgres
+    password: system
   jpa:
     properties:
       hibernate:
@@ -26,9 +26,8 @@ spring:
     change-log: classpath:db/changelog/dbchangelog.xml
 server:
   port: ${PORT:8080}
-jwt:
-  secret: PrQ@LKZ%z$b@deuHMkmEU
-  expiration: 600000000
+  servlet:
+    contextPath: /api
 logging:
   level:
     org:
@@ -36,5 +35,4 @@ logging:
         type:
           descriptor:
             sql: trace
-
 
