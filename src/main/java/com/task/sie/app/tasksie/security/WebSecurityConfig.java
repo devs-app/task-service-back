@@ -32,7 +32,7 @@ public class WebSecurityConfig {
 
         return http.cors().configurationSource(request -> {
                     var cors = new CorsConfiguration();
-                    cors.setAllowedOrigins(List.of("http://localhost:8686","*", "https://app-telar-frontend.herokuapp.com", "http://app-telar-frontend.herokuapp.com"));
+                    cors.setAllowedOrigins(List.of("http://localhost:4200","*"));
                     cors.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
                     cors.setAllowedHeaders(List.of("*"));
                     return cors;
