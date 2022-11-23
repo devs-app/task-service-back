@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import java.util.stream.Collectors;
 
 public class UserConverter {
-    public static UserDto buildPresenterFromEntity(User entity) {
+    public static UserDto toDto(User entity) {
     ModelMapper modelMapper = new ModelMapper();
         UserDto presenter = new UserDto();
     modelMapper.map(entity, presenter);

@@ -25,11 +25,6 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager) throws Exception {
-
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
-        jwtAuthenticationFilter.setAuthenticationManager(authManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-
         return http.cors().configurationSource(request -> {
                     var cors = new CorsConfiguration();
                     cors.setAllowedOrigins(List.of("http://localhost:4200","*"));
@@ -38,7 +33,7 @@ public class WebSecurityConfig {
                     return cors;
                 }).and()
                 .csrf().disable()
-                .addFilter(jwtAuthenticationFilter)
+                //.addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/login",

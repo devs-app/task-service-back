@@ -11,7 +11,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
         default_schema: public
         order_by:
           default_null_ordering: last
@@ -20,7 +20,7 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-    show-sql: true
+    show-sql: false
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/dbchangelog.xml
