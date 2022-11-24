@@ -1,0 +1,1 @@
+web: java -jar build/libs/task-sie-0.0.1-SNAPSHOT.jar
