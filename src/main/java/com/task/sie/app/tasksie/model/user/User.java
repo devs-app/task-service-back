@@ -1,7 +1,7 @@
-package com.task.sie.app.tasksie.model;
+package com.task.sie.app.tasksie.model.user;
 
+import com.task.sie.app.tasksie.model.BaseModel;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends BaseModel{
+public class User extends BaseModel {
     @Column(unique = true, nullable = false)
     private String username;
     @Column(nullable = false)

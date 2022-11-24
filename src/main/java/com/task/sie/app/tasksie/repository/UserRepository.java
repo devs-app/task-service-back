@@ -1,6 +1,6 @@
 package com.task.sie.app.tasksie.repository;
 
-import com.task.sie.app.tasksie.model.User;
+import com.task.sie.app.tasksie.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

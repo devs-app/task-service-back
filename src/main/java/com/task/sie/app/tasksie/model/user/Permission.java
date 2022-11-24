@@ -1,6 +1,7 @@
-package com.task.sie.app.tasksie.model;
+package com.task.sie.app.tasksie.model.user;
 
 import com.task.sie.app.tasksie.enums.EnumStatus;
+import com.task.sie.app.tasksie.model.BaseModel;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Permission extends BaseModel{
+public class Permission extends BaseModel {
 
     @Column(nullable = false)
     private String name;

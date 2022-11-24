@@ -1,14 +1,11 @@
 package com.task.sie.app.tasksie.security;
 
-import com.task.sie.app.tasksie.model.Rol;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class TokenUtils {
 

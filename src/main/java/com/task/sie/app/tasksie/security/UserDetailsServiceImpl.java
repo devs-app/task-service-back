@@ -1,6 +1,6 @@
 package com.task.sie.app.tasksie.security;
 
-import com.task.sie.app.tasksie.model.User;
+import com.task.sie.app.tasksie.model.user.User;
 import com.task.sie.app.tasksie.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

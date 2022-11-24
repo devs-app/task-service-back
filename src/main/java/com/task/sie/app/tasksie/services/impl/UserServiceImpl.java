@@ -5,7 +5,7 @@ import com.task.sie.app.tasksie.dto.TokenDto;
 import com.task.sie.app.tasksie.dto.user.UserConverter;
 import com.task.sie.app.tasksie.dto.user.UserDto;
 import com.task.sie.app.tasksie.enums.EnumStatus;
-import com.task.sie.app.tasksie.model.User;
+import com.task.sie.app.tasksie.model.user.User;
 import com.task.sie.app.tasksie.repository.UserRepository;
 import com.task.sie.app.tasksie.security.AuthCredential;
 import com.task.sie.app.tasksie.security.TokenUtils;
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
             throw new ResponseError("Credenciales incorrectas");
 
         if(user.get().getStatus().equals(EnumStatus.INA))
-            throw new ResponseError("Uruario Bloqueado");
+            throw new ResponseError("Usuario Bloqueado");
 
         if(passwordEncoder.matches(presenter.getPassword(), user.get().getPassword())){
             UserDto userDto = UserConverter.toDto(user.get());

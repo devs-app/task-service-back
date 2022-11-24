@@ -1,7 +1,7 @@
 package com.task.sie.app.tasksie.dto.rol;
 
 import com.task.sie.app.tasksie.dto.permission.PermissionConverter;
-import com.task.sie.app.tasksie.model.Rol;
+import com.task.sie.app.tasksie.model.user.Rol;
 import org.modelmapper.ModelMapper;
 
 import java.util.stream.Collectors;

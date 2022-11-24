@@ -1,6 +1,6 @@
 package com.task.sie.app.tasksie.dto.permission;
 
-import com.task.sie.app.tasksie.model.Permission;
+import com.task.sie.app.tasksie.model.user.Permission;
 import org.modelmapper.ModelMapper;
 
 public class PermissionConverter {

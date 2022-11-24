@@ -26,11 +26,10 @@ public class BaseModel {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "updated_at", updatable = false)
-
     @LastModifiedDate
     private LocalDateTime updatedAt = LocalDateTime.now();
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private EnumStatus status;
+    private EnumStatus status = EnumStatus.ACT;
 }

@@ -33,11 +33,11 @@ public class WebSecurityConfig {
                     return cors;
                 }).and()
                 .csrf().disable()
-                //.addFilter(jwtAuthenticationFilter)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/login",
-                        "/public/**")
+                        "/public/**",
+                        "/swagger-ui/**")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()

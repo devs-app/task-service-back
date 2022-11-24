@@ -1,14 +1,12 @@
 package com.task.sie.app.tasksie.security;
 
-import com.task.sie.app.tasksie.model.Rol;
-import com.task.sie.app.tasksie.model.User;
+import com.task.sie.app.tasksie.model.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Set;
 
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {

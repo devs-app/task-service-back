@@ -113,4 +113,188 @@
                                  referencedTableName="sec_permissions" referencedColumnNames="id"/>
     </changeSet>
     <include file="db/changelog/data-001.sql"/>
+    <changeSet id="add_company_and_rol_company" author="Diego Acosta">
+    <createTable tableName="persons">
+        <column name="id" type="SERIAL">
+            <constraints nullable="false"/>
+        </column>
+        <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+            <constraints nullable="false"/>
+        </column>
+        <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+            <constraints nullable="true"/>
+        </column>
+        <column name="version" type="NUMERIC" defaultValue="0">
+            <constraints nullable="false"/>
+        </column>
+        <column name="name" type="VARCHAR(150)">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="last_name" type="VARCHAR(150)">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="document" type="VARCHAR(50)">
+            <constraints nullable="false" unique="true"/>
+        </column>
+        <column name="status" defaultValue="ACT" type="VARCHAR(3)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <addPrimaryKey tableName="persons" columnNames="id"/>
+    <createTable tableName="legal_representative">
+        <column name="id" type="SERIAL">
+            <constraints nullable="false"/>
+        </column>
+        <column name="person_id" type="BIGINT">
+            <constraints nullable="false"
+                         foreignKeyName="fk_representative_person"
+                         referencedTableName="persons"
+                         referencedColumnNames="id"/>
+        </column>
+        <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+            <constraints nullable="false"/>
+        </column>
+        <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+            <constraints nullable="true"/>
+        </column>
+        <column name="version" type="NUMERIC" defaultValue="0">
+            <constraints nullable="false"/>
+        </column>
+        <column name="status" defaultValue="ACT" type="VARCHAR(3)">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <addPrimaryKey tableName="legal_representative" columnNames="id"/>
+        <createTable tableName="companies">
+            <column name="id" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="legal_representative_id" type="BIGINT">
+                <constraints nullable="true"
+                             foreignKeyName="fk_legal_representative_company"
+                             referencedTableName="legal_representative"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="name" type="VARCHAR(150)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="commercial_name" type="VARCHAR(150)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="document" type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="phone" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mobile" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="logo" type="TEXT"/>
+            <column name="status" defaultValue="ACT" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="companies" columnNames="id"/>
+        <createTable tableName="company_quote">
+            <column name="id" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_quote_company"
+                             referencedTableName="companies"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="rol_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_quote_role"
+                             referencedTableName="sec_roles"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="quote" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="company_quote" columnNames="id"/>
+        <addUniqueConstraint tableName="company_quote" columnNames="company_id,rol_id"/>
+        <createTable tableName="user_company">
+            <column name="id" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_company"
+                             referencedTableName="sec_users"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_company_user"
+                             referencedTableName="companies"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="user_company" columnNames="id"/>
+        <addUniqueConstraint tableName="user_company" columnNames="user_id,company_id"/>
+        <createTable tableName="business_manager">
+            <column name="id" type="SERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="true"/>
+            </column>
+            <column name="version" type="NUMERIC" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_business_manager"
+                             referencedTableName="sec_users"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_company_business_manager"
+                             referencedTableName="companies"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="status" defaultValue="ACT" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addPrimaryKey tableName="business_manager" columnNames="id"/>
+        <addUniqueConstraint tableName="business_manager" columnNames="company_id, status"/>
+    </changeSet>
+    <include file="db/changelog/insert_person_by_admin.sql"/>
 </databaseChangeLog>
