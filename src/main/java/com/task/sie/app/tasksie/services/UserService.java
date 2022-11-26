@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> index();
-    User create(UserDto userDto);
+    UserDto create(UserDto userDto);
     ResponseEntity login(AuthCredential presenter) throws ResponseError;
+    UserDto update(Long userId, UserDto userDto) throws ResponseError;
 }

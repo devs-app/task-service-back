@@ -33,9 +33,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(UserDto userDto) {
-        User u = UserConverter.toModel(userDto);
-        return userRepository.save(u);
+    public UserDto create(UserDto userDto) {
+        User user = userRepository.save(UserConverter.toModel(userDto));
+        user.setPassword("");
+        return UserConverter.toDto(user);
     }
 
     @Override
@@ -56,5 +57,16 @@ public class UserServiceImpl implements UserService {
         }else {
             throw new ResponseError("Credenciales incorrectas");
         }
+    }
+
+    @Override
+    public UserDto update(Long userId, UserDto userDto) throws ResponseError {
+       Optional<User> user =  userRepository.findById(userId);
+       if (user.isEmpty())
+           throw new ResponseError("Usuario no encontrado");
+
+       user.get().setUsername(userDto.getUsername());
+       user.get().setEmail(userDto.getEmail());
+       return UserConverter.toDto(userRepository.save(user.get()));
     }
 }

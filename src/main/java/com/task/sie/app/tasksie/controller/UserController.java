@@ -1,5 +1,6 @@
 package com.task.sie.app.tasksie.controller;
 
+import com.task.sie.app.tasksie.dto.ResponseError;
 import com.task.sie.app.tasksie.dto.user.UserDto;
 import com.task.sie.app.tasksie.model.user.User;
 import com.task.sie.app.tasksie.services.UserService;
@@ -20,7 +21,12 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public User create(@RequestBody UserDto userDto){
+    public UserDto create(@RequestBody UserDto userDto){
         return userService.create(userDto);
+    }
+
+    @PatchMapping("/update/{userId}/")
+    public UserDto update(@RequestBody UserDto userDto, @PathVariable Long userId) throws ResponseError {
+        return userService.update(userId,userDto);
     }
 }
