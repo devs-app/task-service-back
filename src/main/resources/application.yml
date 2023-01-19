@@ -4,6 +4,17 @@ spring:
   profiles:
     include:
       - dev
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: telardmn@gmail.com
+    password: uhzlshfvyarvqoib
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
   #Bdd develop
   datasource:
     url: jdbc:postgresql://peanut.db.elephantsql.com:5432/lqvtqlxi
@@ -32,11 +43,4 @@ server:
   port: ${PORT:8080}
   servlet:
     contextPath: /api
-logging:
-  level:
-    org:
-      hibernate:
-        type:
-          descriptor:
-            sql: trace
 

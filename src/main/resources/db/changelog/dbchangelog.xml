@@ -240,12 +240,6 @@
             <column name="id" type="SERIAL">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_at" type="TIMESTAMP WITHOUT TIME ZONE">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP WITHOUT TIME ZONE">
-                <constraints nullable="true"/>
-            </column>
             <column name="version" type="NUMERIC" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
@@ -295,6 +289,16 @@
         </createTable>
         <addPrimaryKey tableName="business_manager" columnNames="id"/>
         <addUniqueConstraint tableName="business_manager" columnNames="company_id, status"/>
+    </changeSet>
+    <changeSet id="add_user_id_person" author="Diego Acosta">
+        <addColumn tableName="persons">
+            <column name="user_id" type="BIGINT">
+            <constraints nullable="true"
+                         foreignKeyName="fk_user_person"
+                         referencedTableName="sec_users"
+                         referencedColumnNames="id"/>
+        </column>
+        </addColumn>
     </changeSet>
     <include file="db/changelog/insert_person_by_admin.sql"/>
 </databaseChangeLog>

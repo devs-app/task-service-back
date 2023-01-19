@@ -2,6 +2,7 @@ package com.task.sie.app.tasksie.controller;
 
 import com.task.sie.app.tasksie.dto.ResponseError;
 import com.task.sie.app.tasksie.dto.company.CompanyDto;
+import com.task.sie.app.tasksie.dto.company.LegalRepresentativeDto;
 import com.task.sie.app.tasksie.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,16 @@ public class CompanyController {
     @PatchMapping("/update/{companyId}")
     public CompanyDto update(@RequestBody CompanyDto companyDto, @PathVariable Long companyId) throws ResponseError {
         return  companyService.update(companyId,companyDto);
+    }
+
+    @PatchMapping("/activate/{companyId}")
+    public Boolean activate(@RequestBody LegalRepresentativeDto legalRepresentativeDto, @PathVariable Long companyId) throws ResponseError {
+        return companyService.activateCompany(companyId, legalRepresentativeDto);
+    }
+
+    @DeleteMapping("/delete/{companyId}")
+    public CompanyDto delete( @PathVariable Long companyId) throws ResponseError {
+        return companyService.delete(companyId);
     }
 
     @GetMapping("/validate/name")

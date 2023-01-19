@@ -1,7 +1,9 @@
 package com.task.sie.app.tasksie.model;
 
 import com.task.sie.app.tasksie.enums.EnumStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
+@AllArgsConstructor
+@NoArgsConstructor
 public class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

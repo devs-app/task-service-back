@@ -20,8 +20,8 @@ public class UserController {
         return userService.index();
     }
 
-    @PostMapping("/create")
-    public UserDto create(@RequestBody UserDto userDto){
+    @PostMapping("/create/{companyId}")
+    public UserDto create(@RequestBody UserDto userDto, @PathVariable Long companyId){
         return userService.create(userDto);
     }
 

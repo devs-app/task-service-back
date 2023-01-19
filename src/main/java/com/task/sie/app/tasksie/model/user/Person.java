@@ -16,4 +16,7 @@ public class Person extends BaseModel {
     private String name;
     private String lastName;
     private String document;
+    @OneToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 }
