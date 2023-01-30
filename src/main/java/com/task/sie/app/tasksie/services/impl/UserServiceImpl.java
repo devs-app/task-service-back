@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity login(AuthCredential presenter) throws ResponseError {
+        //TODO: Valida empresa y usuarios activos
         Optional<User> user = userRepository
                 .findOneByEmailOrUsername(presenter.getUsername(), presenter.getUsername());
 

@@ -301,4 +301,11 @@
         </addColumn>
     </changeSet>
     <include file="db/changelog/insert_person_by_admin.sql"/>
+    <changeSet id="add_status_company_quote" author="Diego Acosta">
+        <addColumn tableName="company_quote">
+            <column name="status" defaultValue="ACT" type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

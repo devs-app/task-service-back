@@ -4,10 +4,13 @@ import com.task.sie.app.tasksie.dto.BaseEmail;
 import com.task.sie.app.tasksie.dto.ResponseError;
 import com.task.sie.app.tasksie.dto.company.CompanyConverter;
 import com.task.sie.app.tasksie.dto.company.CompanyDto;
+import com.task.sie.app.tasksie.dto.company.quote.CompanyQuoteRequest;
 import com.task.sie.app.tasksie.dto.company.LegalRepresentativeDto;
 import com.task.sie.app.tasksie.enums.EnumRol;
 import com.task.sie.app.tasksie.enums.EnumStatus;
 import com.task.sie.app.tasksie.model.company.Company;
+import com.task.sie.app.tasksie.model.company.CompanyQuote;
+import com.task.sie.app.tasksie.repository.CompanyQuoteRepository;
 import com.task.sie.app.tasksie.model.user.Person;
 import com.task.sie.app.tasksie.model.user.Rol;
 import com.task.sie.app.tasksie.model.user.User;
@@ -41,10 +44,8 @@ public class CompanyServiceImpl implements CompanyService {
     private UserRepository userRepository;
     @Autowired
     private RolRepository rolRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private SendEmailService sendEmailService;
 

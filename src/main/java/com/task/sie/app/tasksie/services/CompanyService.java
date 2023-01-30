@@ -2,8 +2,8 @@ package com.task.sie.app.tasksie.services;
 
 import com.task.sie.app.tasksie.dto.ResponseError;
 import com.task.sie.app.tasksie.dto.company.CompanyDto;
+import com.task.sie.app.tasksie.dto.company.quote.CompanyQuoteRequest;
 import com.task.sie.app.tasksie.dto.company.LegalRepresentativeDto;
-import com.task.sie.app.tasksie.dto.user.UserDto;
 
 import java.util.List;
 
