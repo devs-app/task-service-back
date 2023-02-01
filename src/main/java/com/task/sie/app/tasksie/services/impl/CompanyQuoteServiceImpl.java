@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CompanyQuoteServiceImpl implements CompanyQuoteService {
@@ -44,7 +43,7 @@ public class CompanyQuoteServiceImpl implements CompanyQuoteService {
         if(company.isEmpty())
             throw new ResponseError(COMPANY_NOT_EXISTS);
 
-        companyQuoteRequest.getQuotes().forEach(i ->{
+        companyQuoteRequest.getQuotes().forEach(i -> {
             CompanyQuote companyQuote = new CompanyQuote();
             Rol rol = rolRepository.findByName(EnumRol.valueOf(i.getRol()));
             companyQuote.setCompany(company.get());
