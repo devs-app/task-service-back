@@ -1,6 +1,9 @@
 package com.task.sie.app.tasksie.services.impl;
 
 import com.task.sie.app.tasksie.dto.ResponseError;
+import com.task.sie.app.tasksie.dto.company.CompanyConverter;
+import com.task.sie.app.tasksie.dto.company.quote.CompanyQuoteConverter;
+import com.task.sie.app.tasksie.dto.company.quote.CompanyQuoteDto;
 import com.task.sie.app.tasksie.dto.company.quote.CompanyQuoteRequest;
 import com.task.sie.app.tasksie.enums.EnumRol;
 import com.task.sie.app.tasksie.enums.EnumStatus;
@@ -20,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CompanyQuoteServiceImpl implements CompanyQuoteService {
@@ -35,6 +39,11 @@ public class CompanyQuoteServiceImpl implements CompanyQuoteService {
     private static final String COMPANY_QUOTE_NOT_EXISTS = "La cuota no existe";
     private static final String COMPANY_NOT_CORRESPOND = "La empresa no corresponde al parametro enviado";
     private static final String QUOTE_NOT_VALID = "El numero de usuarios es mayor al total de cuota permitida";
+
+    @Override
+    public List<CompanyQuoteDto> index(Long companyId) {
+        return companyQuoteRepository.findAll().stream().map(CompanyQuoteConverter::toDto).collect(Collectors.toList());
+    }
 
     @Override
     public void configQuoteByCompany(Long companyId, CompanyQuoteRequest companyQuoteRequest) throws ResponseError {
@@ -70,6 +79,14 @@ public class CompanyQuoteServiceImpl implements CompanyQuoteService {
 
         companyQuote.get().setQuote(quoteValue);
         companyQuoteRepository.save(companyQuote.get());
+    }
+
+    @Override
+    public void deleteQuoteFromRol(Long companyId, Long quoteId) throws ResponseError {
+        if(validateUsersFromCompany(companyId,quoteId, BigDecimal.ZERO)){
+            throw new ResponseError(QUOTE_NOT_VALID);
+        }
+        companyQuoteRepository.deleteById(quoteId);
     }
 
     private boolean validateUsersFromCompany(Long companyId, Long quoteId,BigDecimal quoteValue) throws ResponseError {
