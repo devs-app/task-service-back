@@ -7,8 +7,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: telardmn@gmail.com
-    password: uhzlshfvyarvqoib
+    username: devs.app.2023@gmail.com
+    password: zvrfqlzskrdgxuha
     protocol: smtp
     tls: true
     properties.mail.smtp:
@@ -16,14 +16,14 @@ spring:
       starttls.enable: true
       ssl.trust: smtp.gmail.com
 #  #Bdd develop
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/lqvtqlxi
-#    username: postgres
-#    password: system
   datasource:
-    url: jdbc:postgresql://peanut.db.elephantsql.com:5432/lqvtqlxi
-    username: lqvtqlxi
-    password: Pj4-67C24rJKgukUO3pZtuKPcA25rD4g
+    url: jdbc:postgresql://localhost:5432/lqvtqlxi
+    username: postgres
+    password: system
+#  datasource:
+#    url: jdbc:postgresql://peanut.db.elephantsql.com:5432/lqvtqlxi
+#    username: lqvtqlxi
+#    password: Pj4-67C24rJKgukUO3pZtuKPcA25rD4g
   jpa:
     properties:
       hibernate:

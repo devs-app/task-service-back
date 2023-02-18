@@ -41,8 +41,6 @@ public class CompanyController {
         return companyService.delete(companyId);
     }
 
-    //TODO: Activar empresa
-
     @GetMapping("/validate/name")
     public boolean validateName(@RequestParam String name){
         return  companyService.existCompanyByName(name);
